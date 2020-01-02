@@ -1,0 +1,29 @@
+﻿<Window x:Class="SteamGameIdFinder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SteamGameIdFinder"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="424"
+        Width="579">
+    <StackPanel>
+        <Label Content="Enter Game Name:"
+               HorizontalAlignment="Left"
+               FontStyle="Normal"
+               FontFamily="Sans"
+               FontStretch="Expanded"
+               FontSize="17" />
+        <TextBox x:Name="gameNameTextBox"               
+                 Foreground="BlueViolet"
+                 BorderThickness="1"
+                 Text="Type game name here..."
+                 BorderBrush="Red"
+                 TextWrapping="NoWrap"
+                 Height="28"
+                 FontSize="18"
+                 GotFocus="gameNameTextBox_GotFocus"
+                 LostFocus="gameNameTextBox_LostFocus" />
+    </StackPanel>
+</Window>
