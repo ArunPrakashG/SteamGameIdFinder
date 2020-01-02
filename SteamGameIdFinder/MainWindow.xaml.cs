@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,12 @@ namespace SteamGameIdFinder
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		readonly Core Core;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+			Core = new Core(this);
 		}
 
 		private void gameNameTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -31,14 +35,46 @@ namespace SteamGameIdFinder
 			{
 				return;
 			}
+
 			TextBox? textBox = sender as TextBox;
 
+			if(textBox == null)
+			{
+				return;
+			}
 
+			if(string.IsNullOrEmpty(textBox.Text) || textBox.Text.Equals("Type game name here...", StringComparison.OrdinalIgnoreCase))
+			{
+				textBox.Text = string.Empty;
+				textBox.Opacity = 1;
+			}
 		}
 
 		private void gameNameTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
+			if (sender == null || e == null)
+			{
+				return;
+			}
 
+			TextBox? textBox = sender as TextBox;
+
+			if (textBox == null)
+			{
+				return;
+			}
+
+			if (string.IsNullOrEmpty(textBox.Text))
+			{
+				textBox.Text = "Type game name here...";
+				textBox.Opacity = 0.5;
+			}
+		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			gameListBox.ItemsSource = Core.GameInfoCollection;
+			Core.InBackgroundThread(() => Core.Init());
 		}
 	}
 }

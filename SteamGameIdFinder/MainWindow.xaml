@@ -5,25 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SteamGameIdFinder"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Height="424"
-        Width="579">
+        Title="Steam Game ID Finder"
+        Height="420"
+        Width="700"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        Padding="20">
     <StackPanel>
-        <Label Content="Enter Game Name:"
-               HorizontalAlignment="Left"
-               FontStyle="Normal"
-               FontFamily="Sans"
-               FontStretch="Expanded"
-               FontSize="17" />
-        <TextBox x:Name="gameNameTextBox"               
+        <TextBox x:Name="gameNameTextBox"
                  Foreground="BlueViolet"
                  BorderThickness="1"
                  Text="Type game name here..."
                  BorderBrush="Red"
                  TextWrapping="NoWrap"
-                 Height="28"
-                 FontSize="18"
+                 Height="25"
+                 Opacity="0.5"
+                 FontSize="15"
                  GotFocus="gameNameTextBox_GotFocus"
-                 LostFocus="gameNameTextBox_LostFocus" />
+                 LostFocus="gameNameTextBox_LostFocus"
+                 TabIndex="1" />
+        <Rectangle Fill="Transparent"
+                   Height="10" />
+        <ListBox Name="gameListBox"
+                 Background="WhiteSmoke"
+                 HorizontalAlignment="Stretch"
+                 FontSize="20">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding GameName}"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Left"
+                                   FontSize="15"/>
+                        <Rectangle Fill="Transparent"
+                                   Width="270" />
+                        <TextBlock Text="{Binding GameID}"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Right"
+                                   FontSize="15"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
 </Window>
