@@ -6,15 +6,17 @@
         xmlns:local="clr-namespace:SteamGameIdFinder"
         mc:Ignorable="d"
         Title="Steam Game ID Finder"
-        Height="420"
+        Height="435"
         Width="700"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        Padding="20">
+        Padding="20"
+        ResizeMode="NoResize">
     <StackPanel>
         <TextBox x:Name="gameNameTextBox"
                  Foreground="BlueViolet"
                  BorderThickness="1"
+                 TextChanged="gameNameTextBox_TextChanged"
                  Text="Type game name here..."
                  BorderBrush="Red"
                  TextWrapping="NoWrap"
@@ -24,28 +26,48 @@
                  GotFocus="gameNameTextBox_GotFocus"
                  LostFocus="gameNameTextBox_LostFocus"
                  TabIndex="1" />
-        <Rectangle Fill="Transparent"
-                   Height="10" />
+        <Label Name="gameCountLabel"
+               Content="Steam Game Count: "
+               FontStyle="Normal"
+               FontSize="10" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+                   Content="GAME NAME"
+                   HorizontalContentAlignment="Center"
+                   FontStretch="Medium" />
+            <Label Grid.Column="1"
+                   Content="APP ID"
+                   HorizontalContentAlignment="Center"
+                   FontStretch="Medium" />
+        </Grid>
+
         <ListBox Name="gameListBox"
                  Background="WhiteSmoke"
-                 HorizontalAlignment="Stretch"
-                 FontSize="20">
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 FontSize="20"
+                 Height="340">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="450" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding GameName}"
                                    FontWeight="Bold"
-                                   HorizontalAlignment="Stretch"
-                                   TextAlignment="Left"
-                                   FontSize="15"/>
-                        <Rectangle Fill="Transparent"
-                                   Width="270" />
+                                   HorizontalAlignment="Left"
+                                   Grid.Column="0"
+                                   FontSize="15" />
                         <TextBlock Text="{Binding GameID}"
                                    FontWeight="Bold"
-                                   HorizontalAlignment="Stretch"
-                                   TextAlignment="Right"
-                                   FontSize="15"/>
-                    </WrapPanel>
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Center"
+                                   FontSize="15" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

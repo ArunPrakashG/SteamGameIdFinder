@@ -16,9 +16,9 @@ namespace SteamGameIdFinder
 		public class App
 		{
 			[JsonProperty("appid")]
-			public int AppId { get; set; } = 0;
+			public int GameID { get; set; } = 0;
 			[JsonProperty("name")]
-			public string AppName { get; set; } = string.Empty;
+			public string GameName { get; set; } = string.Empty;
 		}
 	}
 }
